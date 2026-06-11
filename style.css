@@ -3,6 +3,8 @@
     --border-color: #dbdbdb;
     --text-color: #262626;
     --button-bg: #efefef;
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-top: env(safe-area-inset-top, 0px);
 }
 
 * {
@@ -10,21 +12,26 @@
     padding: 0;
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* Remove o flash cinza ao tocar em elementos no Android/iOS */
+    -webkit-tap-highlight-color: transparent; 
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
+    overflow-x: hidden;
+    /* Evita scroll elástico feio no iOS se não for necessário */
+    position: relative; 
 }
 
-/* Navbar */
+/* Navbar Superior (Estilo App) */
 .navbar {
     background-color: #fff;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
-    z-index: 10;
-    padding: 10px 20px;
+    z-index: 100;
+    padding: calc(10px + var(--safe-area-top)) 16px 10px; /* Protege contra o Notch */
 }
 
 .nav-container {
@@ -41,111 +48,174 @@ body {
     font-weight: bold;
 }
 
+/* Oculta ícones desnecessários no topo para o mobile */
+.nav-icons {
+    display: flex;
+    align-items: center;
+}
+
 .nav-icons i {
     font-size: 22px;
     margin-left: 20px;
+}
+
+/* NOVO: Barra de Navegação Inferior Nativa para Mobile */
+.bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-top: 1px solid var(--border-color);
+    padding: 10px 24px calc(10px + var(--safe-area-bottom)); /* Protege a barra de gestos do iOS */
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.bottom-nav i {
+    font-size: 24px;
+    color: var(--text-color);
     cursor: pointer;
 }
 
 /* Container do Perfil */
 .profile-container {
     max-width: 935px;
-    margin: 30px auto 0;
-    padding: 0 20px;
+    margin: 0 auto;
+    padding: 16px 16px calc(60px + var(--safe-area-bottom)); /* Espaço para não cobrir o conteúdo com a bottom-nav */
 }
 
-/* Cabeçalho */
+/* Cabeçalho de Perfil Otimizado */
 .profile-header {
     display: flex;
-    margin-bottom: 44px;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 20px;
 }
 
 .profile-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 0 0 auto;
 }
 
 .profile-image img {
-    width: 150px;
-    height: 150px;
+    width: 86px;
+    height: 86px;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid var(--border-color);
 }
 
 .profile-info {
-    flex: 2;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
 }
 
 .username-row {
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
 }
 
 .username {
-    font-size: 28px;
-    font-weight: 300;
+    font-size: 22px;
+    font-weight: 400;
 }
 
 .btn-follow {
     background-color: var(--button-bg);
     border: none;
-    padding: 7px 16px;
+    padding: 6px 0;
+    width: 100%; /* Botão ocupa a largura da info no mobile */
     font-weight: 600;
-    border-radius: 4px;
-    cursor: pointer;
+    font-size: 14px;
+    border-radius: 8px;
+    text-align: center;
 }
 
+/* Lista de Status (Publicações, Seguidores) */
 .stats-list {
     display: flex;
-    gap: 40px;
+    justify-content: space-around;
+    padding: 12px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     list-style: none;
+    margin: 16px 0;
+    width: 100%;
+}
+
+.stats-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    color: #8e8e8e;
+}
+
+.stats-list li strong {
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.bio {
+    padding: 0 4px;
 }
 
 .bio .full-name {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
-/* Seção de Destaques */
+.bio-link {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+}
+
+.bio-link a {
+    color: #00376b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Seção de Destaques (Scroll Suave) */
 .stories-highlights {
     display: flex;
-    gap: 18px;
-    padding: 0 10px 24px 10px;
+    gap: 16px;
+    padding: 16px 4px;
     overflow-x: auto;
-    margin-bottom: 10px;
+    scrollbar-width: none; /* Oculta no Firefox */
+    -webkit-overflow-scrolling: touch; /* Scroll fluido no iOS */
 }
 
 .stories-highlights::-webkit-scrollbar {
-    display: none;
+    display: none; /* Oculta no Chrome/Safari */
 }
 
 .highlight-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    cursor: pointer;
+    gap: 6px;
     flex-shrink: 0;
 }
 
 .highlight-circle {
-    width: 84px;
-    height: 84px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     border: 1px solid var(--border-color);
-    padding: 3px;
+    padding: 2px;
     background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .highlight-circle img {
@@ -156,36 +226,32 @@ body {
 }
 
 .highlight-title {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
     color: var(--text-color);
-    max-width: 80px;
+    max-width: 72px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    text-align: center;
 }
 
 /* Abas */
 .profile-tabs {
     border-top: 1px solid var(--border-color);
     display: flex;
-    justify-content: center;
-    gap: 60px;
+    justify-content: space-around;
 }
 
 .tab {
-    padding: 15px 0;
-    font-size: 12px;
-    letter-spacing: 1px;
-    font-weight: 600;
+    padding: 14px 0;
+    font-size: 20px; /* Transformado em ícones para Mobile */
     color: #8e8e8e;
-    cursor: pointer;
+    flex: 1;
+    text-align: center;
 }
 
 .tab.active {
     color: var(--text-color);
-    border-top: 1px solid var(--text-color);
+    border-top: 2px solid var(--text-color);
     margin-top: -1px;
 }
 
@@ -193,51 +259,25 @@ body {
 .photo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 20px;
+    gap: 3px;
+    margin-top: 4px;
 }
 
 .grid-item {
     position: relative;
     aspect-ratio: 1 / 1;
     background-color: #000;
-    cursor: pointer;
 }
 
 .grid-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.2s ease;
 }
 
+/* Desativados overlays de hover no mobile (substituídos pelo clique direto) */
 .grid-item-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    color: #fff;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.grid-item:hover img {
-    opacity: 0.8;
-}
-
-.grid-item:hover .grid-item-overlay {
-    opacity: 1;
-}
-
-.video-item {
-    overflow: hidden;
+    display: none !important; 
 }
 
 .video-item iframe {
@@ -247,7 +287,9 @@ body {
     pointer-events: none;
 }
 
-/* Modal do Feed (Posts) */
+/* ===================================================
+   MODAL DE POSTS (FULLSCREEN MOBILE NATIVO) 
+   =================================================== */
 .modal {
     display: none;
     position: fixed;
@@ -256,27 +298,52 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    justify-content: center;
-    align-items: center;
+    background-color: #000;
 }
 
 .modal-content {
     background-color: #000;
     color: #f5f5f5;
     display: flex;
-    max-width: 950px;
-    width: 90%;
-    height: 85vh;
-    max-height: 750px;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+}
+
+/* Botão Voltar Superior estilo App */
+.close-modal {
+    position: absolute;
+    top: calc(12px + var(--safe-area-top));
+    left: 16px;
+    right: auto;
+    color: #fff;
+    font-size: 28px;
+    z-index: 1100;
+}
+
+/* Cabeçalho do post vai para o topo */
+.modal-details-header {
+    padding: calc(14px + var(--safe-area-top)) 16px 14px 50px; /* Dá espaço para o botão voltar */
+    border-bottom: 1px solid #262626;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #000;
+}
+
+.modal-mini-profile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .modal-media-container {
-    width: 60%;
-    background-color: #0c0c0c;
+    width: 100%;
+    flex: 1; /* Ocupa o centro da tela dinamicamente */
+    background-color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -291,100 +358,45 @@ body {
 }
 
 .modal-details {
-    width: 40%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #121212;
-    border-left: 1px solid #262626;
-}
-
-.modal-details-header {
-    padding: 14px;
-    border-bottom: 1px solid #262626;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.modal-mini-profile {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.modal-music {
-    font-size: 11px;
-    color: #8e8e8e;
-    margin-top: 2px;
+    background-color: #000;
+    border-left: none;
 }
 
 .modal-caption-area {
-    padding: 16px;
-    flex: 1;
+    padding: 12px 16px;
     font-size: 14px;
-    overflow-y: auto;
     line-height: 1.4;
-}
-
-.modal-caption-area strong {
-    margin-right: 8px;
+    max-height: 120px; /* Limita tamanho da legenda para não roubar a tela */
+    overflow-y: auto;
 }
 
 .modal-footer-area {
-    padding: 14px;
+    padding: 12px 16px calc(12px + var(--safe-area-bottom));
     border-top: 1px solid #262626;
-    background-color: #121212;
+    background-color: #000;
 }
 
 .modal-action-icons {
     display: flex;
     justify-content: space-between;
     font-size: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .modal-action-icons .left-icons {
     display: flex;
-    gap: 16px;
-}
-
-.modal-action-icons i, 
-.btn-like-modal i {
-    cursor: pointer;
-    color: #f5f5f5;
-}
-
-.btn-like-modal {
-    background: none;
-    border: none;
-    font-size: 24px;
-    padding: 0;
-    cursor: pointer;
-}
-
-.modal-likes-count {
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-.modal-post-date {
-    font-size: 10px;
-    color: #8e8e8e;
-    margin-bottom: 12px;
+    gap: 18px;
 }
 
 .modal-comment-input {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding-top: 12px;
+    padding-top: 10px;
     border-top: 1px solid #262626;
-}
-
-.modal-comment-input i {
-    font-size: 20px;
-    color: #f5f5f5;
 }
 
 .modal-comment-input input {
@@ -395,30 +407,14 @@ body {
     font-size: 14px;
 }
 
-.modal-comment-input input:focus {
-    outline: none;
+/* Ocultar setas desktop no Mobile */
+.post-arrow, .story-arrow {
+    display: none !important;
 }
 
-.btn-post-comment {
-    background: none;
-    border: none;
-    color: #0095f6;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1100;
-}
-
-/* MODAL DE DESTAQUES (ESTILO COMPLETO INSTAGRAM WEB REAL) */
+/* ===================================================
+   MODAL DE STORIES (FULLSCREEN MOBILE NATIVO) 
+   =================================================== */
 .modal-story {
     display: none;
     position: fixed;
@@ -427,354 +423,130 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(10, 10, 10, 0.95);
-    justify-content: center;
-    align-items: center;
-}
-
-/* O Container principal cinza escuro da imagem de referência */
-.story-content {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-    height: 94vh;
-    max-height: 860px;
-    background-color: #1a1a1a; /* Fundo cinza escuro do frame externo */
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Alinha Cabeçalho no topo, Foto no centro e Input embaixo */
-    padding: 40px 16px 20px; /* Dá espaço para a barra de progresso e respiros */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-}
-
-/* Área da foto centralizada com bordas arredondadas internas */
-.story-image-wrapper {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    margin: 12px 0; /* Separação sutil do topo e do fundo */
-}
-
-.story-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px; /* Bordas bem arredondadas no cartão do story */
     background-color: #000;
 }
 
-/* Setas de Navegação Laterais (Flutuando fora do container principal) */
-.story-arrow {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
+.story-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background-color: #000;
+    border-radius: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2200;
-    transition: background 0.2s ease, opacity 0.2s ease;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: calc(20px + var(--safe-area-top)) 0 calc(10px + var(--safe-area-bottom));
 }
 
-.story-arrow:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.story-arrow-left {
-    left: calc(50% - 300px); /* Ajustado dinamicamente para o novo tamanho */
-}
-
-.story-arrow-right {
-    right: calc(50% - 300px);
-}
-
-/* Barras de Progresso no Topo Absoluto do Frame */
 .story-progress-container {
     position: absolute;
-    top: 14px;
-    left: 16px;
-    right: 16px;
+    top: calc(8px + var(--safe-area-top));
+    left: 12px;
+    right: 12px;
     display: flex;
     gap: 4px;
     z-index: 10;
 }
 
-.story-segment {
+.story-image-wrapper {
     flex: 1;
-    height: 2px;
-    background-color: rgba(255, 255, 255, 0.25);
-    border-radius: 1px;
+    width: 100%;
+    margin: 0; 
 }
 
-.story-segment.active {
-    background-color: #fff;
+.story-image-wrapper img {
+    border-radius: 0;
 }
 
-/* Cabeçalho Compacto */
 .story-header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    padding: 0 4px;
+    padding: 10px 16px;
 }
 
-.story-header-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.story-mini-profile {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.story-user-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.story-user-line {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.story-username {
-    font-size: 13.5px;
-    font-weight: 600;
-}
-
-#storyTime {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.story-audio-line {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.story-audio-line i {
-    font-size: 9px;
-}
-
-.story-top-icons {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 14px;
-    color: #fff;
-}
-
-.story-top-icons i {
-    cursor: pointer;
-    opacity: 0.8;
-}
-
-/* Rodapé Horizontal Estilo IG Web */
 .story-footer-input-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 4px 4px 0 4px;
-}
-
-.story-input-wrapper {
-    flex: 1;
+    padding: 10px 16px;
 }
 
 .story-footer-input-container input {
-    width: 100%;
-    background: none;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 22px;
-    padding: 11px 18px;
-    color: #fff;
-    font-size: 13.5px;
-    transition: border-color 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.story-footer-input-container input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.story-footer-input-container input:focus {
-    outline: none;
-    border-color: rgba(255, 255, 255, 0.7);
-}
-
-.story-footer-icons {
-    display: flex;
-    gap: 14px;
-    font-size: 22px;
-    color: #fff;
-}
-
-.story-footer-icons i {
-    cursor: pointer;
-}
-
+/* Remove botão 'X' de fechar feio do desktop, fechamento se faz deslizando ou tocando nas bordas */
 .close-story {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    color: #8a8a8a;
-    font-size: 35px;
-    cursor: pointer;
-    z-index: 2100;
-    transition: color 0.2s;
+    display: none !important;
 }
 
-.close-story:hover {
-    color: #fff;
-}
-
-/* Responsividade Geral */
-@media (max-width: 735px) {
-    .profile-header {
-        padding: 20px 0;
-        margin-bottom: 0;
-    }
-    .profile-image img {
-        width: 77px;
-        height: 77px;
-    }
-    .stats-list {
+/* ===================================================
+   MEDIA QUERIES DE ADAPTAÇÃO & SUPORTE TABLET/DESKTOP
+   =================================================== */
+@media (min-width: 736px) {
+    /* Restaura o layout clássico caso a tela seja maior (Tablet/Desktop) */
+    .bottom-nav {
         display: none;
     }
-    .photo-grid {
-        gap: 3px;
+    .profile-header {
+        margin-bottom: 44px;
     }
+    .profile-image img {
+        width: 150px;
+        height: 150px;
+    }
+    .username-row {
+        flex-direction: row;
+    }
+    .btn-follow {
+        width: auto;
+    }
+    .stats-list {
+        border: none;
+        padding: 0;
+        margin: 0;
+        justify-content: flex-start;
+        gap: 40px;
+    }
+    .stats-list li {
+        flex-direction: row;
+        gap: 5px;
+    }
+    
+    /* Modais retornam ao estilo caixa centralizada */
     .modal-content {
-        flex-direction: column;
-        height: 80vh;
+        flex-direction: row;
+        max-width: 950px;
+        width: 90%;
+        height: 85vh;
+        max-height: 750px;
+        border-radius: 4px;
+        margin: auto;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
     }
-    .modal-media-container {
-        width: 100%;
-        height: 55%;
-    }
-    .modal-details {
-        width: 100%;
-        height: 45%;
-        border-left: none;
-    }
-    .stories-highlights {
-        gap: 12px;
-        padding-bottom: 16px;
-    }
-    .highlight-circle {
-        width: 64px;
-        height: 64px;
-    }
-    .highlight-title {
-        font-size: 11px;
-        max-width: 65px;
-    }
-    /* Mobile faz o container virar Fullscreen nativo sem bordas extras */
+    .modal-media-container { width: 60%; }
+    .modal-details { width: 40%; border-left: 1px solid #262626; }
+    .close-modal { right: 25px; left: auto; top: 15px; }
+    
     .story-content {
-        height: 100vh;
-        max-height: 100%;
-        border-radius: 0;
-        padding: 30px 12px 16px;
-        background-color: #000;
+        max-width: 480px;
+        height: 94vh;
+        max-height: 860px;
+        border-radius: 12px;
+        margin: auto;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
     }
-    .story-image-wrapper img {
-        border-radius: 0;
-    }
-    .story-arrow {
-        display: none !important;
-    }
-}
-
-
-/* Estilização do link da Bio estilo Instagram */
-.bio-link {
-    margin-top: 4px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    color: #00376b; /* Azul clássico de links do Instagram */
-    font-weight: 600;
-}
-
-.bio-link i {
-    font-size: 12px;
-    color: #8e8e8e; /* Ícone de corrente cinza discreto */
-}
-
-.bio-link a {
-    color: #00376b;
-    text-decoration: none; /* Remove o sublinhado */
-    transition: opacity 0.2s ease;
-}
-
-.bio-link a:hover {
-    opacity: 0.8; /* Dá um efeito sutil ao passar o rato */
-}
-/* ===================================================
-   NOVAS SETAS DE NAVEGAÇÃO DO MODAL DE POSTS 
-   =================================================== */
-.post-arrow {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1200;
-    transition: background 0.2s ease, opacity 0.2s ease;
-}
-
-.post-arrow:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.post-arrow-left {
-    left: calc(50% - 530px); /* Alinhado nas laterais externas do frame de 950px */
-}
-
-.post-arrow-right {
-    right: calc(50% - 530px);
-}
-
-/* Ocultar setas em telas menores onde o modal vira vertical */
-@media (max-width: 1080px) {
-    .post-arrow-left { left: 10px; }
-    .post-arrow-right { right: 10px; }
+    .story-image-wrapper img { border-radius: 16px; }
 }
 
 @media (max-width: 735px) {
-    .post-arrow {
-        display: none !important;
+    /* Ativa a barra inferior apenas nos smartphones */
+    .bottom-nav {
+        display: flex;
+    }
+    .navbar .nav-icons {
+        display: none; /* Esconde os ícones repetidos do topo */
     }
 }
