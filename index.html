@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil da Mariana</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="imgs/img1.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <span class="logo">Instagram</span>
+            <div class="nav-icons">
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-paper-plane"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="profile-container">
+        <header class="profile-header">
+            <div class="profile-image">
+                <img src="imgs/img1.png" alt="Foto de Perfil" id="profile-pic">
+            </div>
+            
+            <section class="profile-info">
+                <div class="username-row">
+                    <h2 class="username">Projeto J+M</h2>
+                    <button class="btn-follow">Seguindo</button>
+                </div>
+                
+                <ul class="stats-list">
+                    <li><strong>21</strong> publicações</li>
+                    <li><strong>2</strong> seguidores</li>
+                    <li><strong>2</strong> seguindo</li>
+                    
+                </ul>
+                
+<div class="bio">
+    <h1 class="full-name">J+M=💑.</h1>
+    <p>Desde 07/02/2023  ✨</p>
+    <p>Site Desde 05/06/2024 🕒</p>
+    <p class="bio-link">
+        <i class="fa-solid fa-link"></i> 
+        <a href="https://joseleblanc.github.io/marianamalysz/" target="_blank">joseleblanc.github.io/marianamalysz</a>
+    </p>
+</div>
+            </section>
+        </header>
+
+<div class="stories-highlights">
+            <!-- DESTAQUE 1: M -->
+            <div class="highlight-item" onclick="abrirHighlight(['imgs/1.jpg',], 'M ❤️')">
+                <div class="highlight-circle">
+                    <img src="imgs/1.jpg" alt="Capa Destaque 1">
+                </div>
+                <span class="highlight-title">M</span>
+            </div>
+            
+            <!-- DESTAQUE 2: A -->
+            <div class="highlight-item" onclick="abrirHighlight(['imgs/2.jpg', ], 'A ❤️')">
+                <div class="highlight-circle">
+                    <img src="imgs/2.jpg" alt="Capa Destaque 2">
+                </div>
+                <span class="highlight-title">A</span>
+            </div>
+            
+            <!-- DESTAQUE 3: R -->
+            <div class="highlight-item" onclick="abrirHighlight(['imgs/3.jpg', ], 'R ❤️')">
+                <div class="highlight-circle">
+                    <img src="imgs/3.jpg" alt="Capa Destaque 3">
+                </div>
+                <span class="highlight-title">R</span>
+            </div>
+            
+            <!-- DESTAQUE 4: I -->
+            <div class="highlight-item" onclick="abrirHighlight(['imgs/4.jpg', ], 'I ❤️')">
+                <div class="highlight-circle">
+                    <img src="imgs/4.jpg" alt="Capa Destaque 4">
+                </div>
+                <span class="highlight-title">I</span>
+            </div>
+        </div>
+
+        <div class="profile-tabs">
+            <div class="tab active"><i class="fa-solid fa-grid-3x3"></i> PUBLICAÇÕES</div>
+            <div class="tab"><i class="fa-regular fa-bookmark"></i> SALVOS</div>
+        </div>
+
+       <div class="photo-grid">
+
+
+
+
+
+        <div class="grid-item video-item" onclick="abrirModalComVideo('j2oV0Cjm1nc', 'Um vídeo especial para você, Mariana. ❤️')">
+    <iframe 
+        src="https://www.youtube.com/embed/j2oV0Cjm1nc?controls=0&rel=0&modestbranding=1" 
+        title="Vídeo Especial Mariana" 
+        frameborder="0" 
+        allowfullscreen>
+    </iframe>
+    <div class="grid-item-overlay">
+        <span><i class="fa-solid fa-play"></i> Reproduzir</span>
+    </div>
+</div>
+
+
+
+
+
+            <div class="grid-item" onclick="abrirPost('/imgs/post 1.png', 'A Festa Junina do Colegio Agricola O INICIO DE TUDO!')">
+                <img src="/imgs/post 1.png" alt="Foto 2">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 343</span>
+                </div>
+            </div>
+                        <div class="grid-item" onclick="abrirPost('/imgs/post 2.png', 'O inicio da criacao do site')">
+                <img src="/imgs/post 2.png" alt="Foto 2">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 998</span>
+                </div>
+            </div>
+                        <div class="grid-item" onclick="abrirPost('/imgs/post 3.png', 'A ESCOLHA PRINCIPAL O TEMA')">
+                <img src="/imgs/post 3.png" alt="Foto 3">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 1.3K</span>
+                </div>
+            </div>
+                        <div class="grid-item" onclick="abrirPost('/imgs/post 4.png', 'EXTRUTURA INICIAL DO SITE')">
+                <img src="/imgs/post 4.png" alt="Foto 4">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 654</span>
+                </div>
+            </div>
+                        <div class="grid-item" onclick="abrirPost('/imgs/post 5.png', 'O FINAL QUE NAO FOI O FINAL')">
+                <img src="/imgs/post 5.png" alt="Foto 5">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 654</span>
+                </div>
+            </div>
+                        <div class="grid-item" onclick="abrirPost('/imgs/post 6.png', 'Uma pergunta aleatoria com um sentido??????')">
+                <img src="/imgs/post 6.png" alt="Foto 6">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 654</span>
+                </div>
+            </div>        
+            
+                                    <div class="grid-item" onclick="abrirPost('/imgs/post 7.png', 'o que seria a recompensa? um presente? um jantar? um passeio? um carro? um apartamento? uma viagem? um anel? um casamento? OQUE???????')">
+                <img src="/imgs/post 7.png" alt="Foto 7">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 122</span>
+                </div>
+            </div>
+
+                                    <div class="grid-item" onclick="abrirPost('/imgs/post 8.png', 'E se ela nao marcar?')">
+                <img src="/imgs/post 8.png" alt="Foto 8">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 614</span>
+                </div>
+            </div>
+                                    <div class="grid-item" onclick="abrirPost('/imgs/post 9.png', 'A animacao da vidaaa')">
+                <img src="/imgs/post 9.png" alt="Foto 9">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 823</span>
+                </div>
+           
+         </div>            
+        
+        
+                                    <div class="grid-item" onclick="abrirPost('/imgs/post 10.png', 'agora sim esta perfeito! mas da pra melhorar!')">
+                <img src="/imgs/post 10.png" alt="Foto 10">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 872</span>
+                </div>
+            </div>            
+        
+        
+                                            <div class="grid-item" onclick="abrirPost('/imgs/post 11.png', 'ACHO QUE TENHO QUE FALAR MAIS!')">
+                <img src="/imgs/post 11.png" alt="Foto 11">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 473</span>
+                </div>
+            </div>  
+                             <div class="grid-item" onclick="abrirPost('/imgs/post 12.png', 'O TEXTO FINAL DO SITE!')">
+                <img src="/imgs/post 12.png" alt="Foto 12">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 125</span>
+                </div>
+            </div>  
+                             <div class="grid-item" onclick="abrirPost('/imgs/post 13.png', 'A MAIOR EVOLUCAO DO SITE UM VIDEO COM IA')">
+                <img src="/imgs/post 13.png" alt="Foto 13">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 550</span>
+                </div>
+            </div>                
+        
+                              <div class="grid-item" onclick="abrirPost('/imgs/post 14.png', 'A HISTORIA APOS O TERMINO DO SITE')">
+                <img src="/imgs/post 14.png" alt="Foto 14">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 847</span>
+                </div>
+            </div>          
+        
+                             <div class="grid-item" onclick="abrirPost('/imgs/post 15.png', 'MELHORIAS FORAM FEITAS E AINDA TINHA UM PROBLEMA')">
+                <img src="/imgs/post 15.png" alt="Foto 15">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 348</span>
+                </div>
+            </div>       
+        
+        
+                        <div class="grid-item" onclick="abrirPost('/imgs/post 16.png', 'E DERREPENTE TENHO 1 SEMANA')">
+                <img src="/imgs/post 16.png" alt="Foto 16">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 438</span>
+                </div>
+            </div>  
+                         <div class="grid-item" onclick="abrirPost('/imgs/post 17.png', 'grandes Criacoes em 1 semana trabalhando o dia todo nisso')">
+                <img src="/imgs/post 17.png" alt="Foto 17">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 473</span>
+                </div>
+            </div>        
+                              <div class="grid-item" onclick="abrirPost('/imgs/post 18.png', 'O TAL DIA 01/03!')">
+                <img src="/imgs/post 18.png" alt="Foto 18">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 653</span>
+                </div>
+            </div>        
+           
+        
+                              <div class="grid-item" onclick="abrirPost('/imgs/post 19.png', 'O ENVIO ')">
+                <img src="/imgs/post 19.png" alt="Foto 19">
+                <div class="grid-item-overlay">
+                    <span><i class="fa-solid fa-heart"></i> 10M</span>
+                </div>
+            </div>        
+                   
+        
+        
+<div class="grid-item video-item" onclick="abrirModalComVideo('bRHtm_21Uog', 'Outro momento inesquecível com você. ✨')">
+    <iframe 
+        src="https://www.youtube.com/embed/bRHtm_21Uog?controls=0&rel=0&modestbranding=1" 
+        title="Segundo Vídeo Especial" 
+        frameborder="0" 
+        allowfullscreen>
+    </iframe>
+    <div class="grid-item-overlay">
+        <span><i class="fa-solid fa-play"></i> Reproduzir</span>
+    </div>
+</div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+    </main>
+
+ <div id="postModal" class="modal" onclick="fecharPostModal()">
+        <span class="close-modal" onclick="fecharPostModal()">&times;</span>
+        
+        <button id="postArrowLeft" class="post-arrow post-arrow-left" onclick="navegarPost(event, -1)">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div id="modalMediaContainer" class="modal-media-container">
+                <img id="modalImage" src="" alt="Post Ampliado" style="display: none;">
+                <div id="modalVideoEmbed"></div>
+            </div>
+            <div class="modal-details">
+                <div class="modal-details-header">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Foto Miniatura" class="modal-mini-profile">
+                    <div>
+                        <strong>Projeto J+M</strong>
+                        <p class="modal-music"><i class="fa-solid fa-music"></i> Áudio original</p>
+                    </div>
+                </div>
+                <div class="modal-caption-area">
+                    <strong>Projeto J+M</strong>
+                    <span id="modalCaption">Legenda do post...</span>
+                </div>
+                <div class="modal-footer-area">
+                    <div class="modal-action-icons">
+                        <div class="left-icons">
+                            <button class="btn-like-modal" onclick="darLike(this)"><i class="fa-regular fa-heart"></i></button>
+                            <i class="fa-regular fa-comment"></i>
+                            <i class="fa-regular fa-paper-plane"></i>
+                        </div>
+                        <i class="fa-regular fa-bookmark"></i>
+                    </div>
+                    <p class="modal-likes-count"><strong id="modalLikesText">11 curtidas</strong></p>
+                    <p class="modal-post-date">HÁ 1 DIA</p>
+                    <div class="modal-comment-input">
+                        <i class="fa-regular fa-face-smile"></i>
+                        <input type="text" placeholder="Adicione um comentário...">
+                        <button class="btn-post-comment">Postar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button id="postArrowRight" class="post-arrow post-arrow-right" onclick="navegarPost(event, 1)">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <div id="highlightModal" class="modal-story" onclick="fecharHighlight()">
+        <span class="close-story">&times;</span>
+        
+        <button id="storyArrowLeft" class="story-arrow story-arrow-left" onclick="voltarStory(event)">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="story-content" onclick="proximoStory(event)">
+            <div id="storyProgressContainer" class="story-progress-container"></div>
+            
+<!-- NOVO CABEÇALHO DO STORY ESTILO INSTAGRAM REAL -->
+            <div class="story-header">
+                <div class="story-header-left">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Miniatura" class="story-mini-profile">
+                    <div class="story-user-info">
+                        <div class="story-user-line">
+                            <strong id="storyUsername" class="story-username">Projeto J+M</strong>
+                            <span id="storyTime">24 h</span>
+                        </div>
+                        <p class="story-audio-line">
+                            <i class="fa-solid fa-chart-simple"></i> <span id="storyMusicName">Áudio original</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="story-top-icons">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                    <i class="fa-solid fa-pause"></i>
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
+            </div>
+            
+            <img id="storyImage" src="" alt="Conteúdo do Destaque">
+            
+            <div class="story-footer-input-container" onclick="event.stopPropagation()">
+                <div class="story-input-wrapper">
+                    <input type="text" id="storyReplyInput" placeholder="Responder...">
+                </div>
+                <div class="story-footer-icons">
+                    <i class="fa-regular fa-heart" onclick="darLikeStory(this)"></i>
+                    <i class="fa-regular fa-paper-plane"></i>
+                </div>
+            </div>
+        </div>
+
+        <button id="storyArrowRight" class="story-arrow story-arrow-right" onclick="proximoStory(event)">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

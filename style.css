@@ -1,0 +1,780 @@
+:root {
+    --bg-color: #fafafa;
+    --border-color: #dbdbdb;
+    --text-color: #262626;
+    --button-bg: #efefef;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Navbar */
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 10px 20px;
+}
+
+.nav-container {
+    max-width: 935px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Grand Hotel', cursive, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-icons i {
+    font-size: 22px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/* Container do Perfil */
+.profile-container {
+    max-width: 935px;
+    margin: 30px auto 0;
+    padding: 0 20px;
+}
+
+/* Cabeçalho */
+.profile-header {
+    display: flex;
+    margin-bottom: 44px;
+}
+
+.profile-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+}
+
+.profile-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.username-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.username {
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.btn-follow {
+    background-color: var(--button-bg);
+    border: none;
+    padding: 7px 16px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.stats-list {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.bio .full-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+/* Seção de Destaques */
+.stories-highlights {
+    display: flex;
+    gap: 18px;
+    padding: 0 10px 24px 10px;
+    overflow-x: auto;
+    margin-bottom: 10px;
+}
+
+.stories-highlights::-webkit-scrollbar {
+    display: none;
+}
+
+.highlight-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.highlight-circle {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    padding: 3px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.highlight-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.highlight-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-color);
+    max-width: 80px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* Abas */
+.profile-tabs {
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.tab {
+    padding: 15px 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #8e8e8e;
+    cursor: pointer;
+}
+
+.tab.active {
+    color: var(--text-color);
+    border-top: 1px solid var(--text-color);
+    margin-top: -1px;
+}
+
+/* Grid de Fotos */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 20px;
+}
+
+.grid-item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background-color: #000;
+    cursor: pointer;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+}
+
+.grid-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    color: #fff;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.grid-item:hover img {
+    opacity: 0.8;
+}
+
+.grid-item:hover .grid-item-overlay {
+    opacity: 1;
+}
+
+.video-item {
+    overflow: hidden;
+}
+
+.video-item iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* Modal do Feed (Posts) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #000;
+    color: #f5f5f5;
+    display: flex;
+    max-width: 950px;
+    width: 90%;
+    height: 85vh;
+    max-height: 750px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.modal-media-container {
+    width: 60%;
+    background-color: #0c0c0c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-media-container img,
+#modalVideoEmbed,
+#modalVideoEmbed iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.modal-details {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    background-color: #121212;
+    border-left: 1px solid #262626;
+}
+
+.modal-details-header {
+    padding: 14px;
+    border-bottom: 1px solid #262626;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-mini-profile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.modal-music {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-top: 2px;
+}
+
+.modal-caption-area {
+    padding: 16px;
+    flex: 1;
+    font-size: 14px;
+    overflow-y: auto;
+    line-height: 1.4;
+}
+
+.modal-caption-area strong {
+    margin-right: 8px;
+}
+
+.modal-footer-area {
+    padding: 14px;
+    border-top: 1px solid #262626;
+    background-color: #121212;
+}
+
+.modal-action-icons {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.modal-action-icons .left-icons {
+    display: flex;
+    gap: 16px;
+}
+
+.modal-action-icons i, 
+.btn-like-modal i {
+    cursor: pointer;
+    color: #f5f5f5;
+}
+
+.btn-like-modal {
+    background: none;
+    border: none;
+    font-size: 24px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.modal-likes-count {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.modal-post-date {
+    font-size: 10px;
+    color: #8e8e8e;
+    margin-bottom: 12px;
+}
+
+.modal-comment-input {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #262626;
+}
+
+.modal-comment-input i {
+    font-size: 20px;
+    color: #f5f5f5;
+}
+
+.modal-comment-input input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #f5f5f5;
+    font-size: 14px;
+}
+
+.modal-comment-input input:focus {
+    outline: none;
+}
+
+.btn-post-comment {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+/* MODAL DE DESTAQUES (ESTILO COMPLETO INSTAGRAM WEB REAL) */
+.modal-story {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.95);
+    justify-content: center;
+    align-items: center;
+}
+
+/* O Container principal cinza escuro da imagem de referência */
+.story-content {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 94vh;
+    max-height: 860px;
+    background-color: #1a1a1a; /* Fundo cinza escuro do frame externo */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Alinha Cabeçalho no topo, Foto no centro e Input embaixo */
+    padding: 40px 16px 20px; /* Dá espaço para a barra de progresso e respiros */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+/* Área da foto centralizada com bordas arredondadas internas */
+.story-image-wrapper {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 12px 0; /* Separação sutil do topo e do fundo */
+}
+
+.story-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px; /* Bordas bem arredondadas no cartão do story */
+    background-color: #000;
+}
+
+/* Setas de Navegação Laterais (Flutuando fora do container principal) */
+.story-arrow {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2200;
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.story-arrow:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.story-arrow-left {
+    left: calc(50% - 300px); /* Ajustado dinamicamente para o novo tamanho */
+}
+
+.story-arrow-right {
+    right: calc(50% - 300px);
+}
+
+/* Barras de Progresso no Topo Absoluto do Frame */
+.story-progress-container {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    gap: 4px;
+    z-index: 10;
+}
+
+.story-segment {
+    flex: 1;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 1px;
+}
+
+.story-segment.active {
+    background-color: #fff;
+}
+
+/* Cabeçalho Compacto */
+.story-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 0 4px;
+}
+
+.story-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.story-mini-profile {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.story-user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.story-user-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.story-username {
+    font-size: 13.5px;
+    font-weight: 600;
+}
+
+#storyTime {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.story-audio-line {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.story-audio-line i {
+    font-size: 9px;
+}
+
+.story-top-icons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.story-top-icons i {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* Rodapé Horizontal Estilo IG Web */
+.story-footer-input-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 4px 4px 0 4px;
+}
+
+.story-input-wrapper {
+    flex: 1;
+}
+
+.story-footer-input-container input {
+    width: 100%;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 22px;
+    padding: 11px 18px;
+    color: #fff;
+    font-size: 13.5px;
+    transition: border-color 0.2s;
+}
+
+.story-footer-input-container input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.story-footer-input-container input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.story-footer-icons {
+    display: flex;
+    gap: 14px;
+    font-size: 22px;
+    color: #fff;
+}
+
+.story-footer-icons i {
+    cursor: pointer;
+}
+
+.close-story {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #8a8a8a;
+    font-size: 35px;
+    cursor: pointer;
+    z-index: 2100;
+    transition: color 0.2s;
+}
+
+.close-story:hover {
+    color: #fff;
+}
+
+/* Responsividade Geral */
+@media (max-width: 735px) {
+    .profile-header {
+        padding: 20px 0;
+        margin-bottom: 0;
+    }
+    .profile-image img {
+        width: 77px;
+        height: 77px;
+    }
+    .stats-list {
+        display: none;
+    }
+    .photo-grid {
+        gap: 3px;
+    }
+    .modal-content {
+        flex-direction: column;
+        height: 80vh;
+    }
+    .modal-media-container {
+        width: 100%;
+        height: 55%;
+    }
+    .modal-details {
+        width: 100%;
+        height: 45%;
+        border-left: none;
+    }
+    .stories-highlights {
+        gap: 12px;
+        padding-bottom: 16px;
+    }
+    .highlight-circle {
+        width: 64px;
+        height: 64px;
+    }
+    .highlight-title {
+        font-size: 11px;
+        max-width: 65px;
+    }
+    /* Mobile faz o container virar Fullscreen nativo sem bordas extras */
+    .story-content {
+        height: 100vh;
+        max-height: 100%;
+        border-radius: 0;
+        padding: 30px 12px 16px;
+        background-color: #000;
+    }
+    .story-image-wrapper img {
+        border-radius: 0;
+    }
+    .story-arrow {
+        display: none !important;
+    }
+}
+
+
+/* Estilização do link da Bio estilo Instagram */
+.bio-link {
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #00376b; /* Azul clássico de links do Instagram */
+    font-weight: 600;
+}
+
+.bio-link i {
+    font-size: 12px;
+    color: #8e8e8e; /* Ícone de corrente cinza discreto */
+}
+
+.bio-link a {
+    color: #00376b;
+    text-decoration: none; /* Remove o sublinhado */
+    transition: opacity 0.2s ease;
+}
+
+.bio-link a:hover {
+    opacity: 0.8; /* Dá um efeito sutil ao passar o rato */
+}
+/* ===================================================
+   NOVAS SETAS DE NAVEGAÇÃO DO MODAL DE POSTS 
+   =================================================== */
+.post-arrow {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1200;
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.post-arrow:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.post-arrow-left {
+    left: calc(50% - 530px); /* Alinhado nas laterais externas do frame de 950px */
+}
+
+.post-arrow-right {
+    right: calc(50% - 530px);
+}
+
+/* Ocultar setas em telas menores onde o modal vira vertical */
+@media (max-width: 1080px) {
+    .post-arrow-left { left: 10px; }
+    .post-arrow-right { right: 10px; }
+}
+
+@media (max-width: 735px) {
+    .post-arrow {
+        display: none !important;
+    }
+}
